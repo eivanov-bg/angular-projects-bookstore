@@ -1,0 +1,77 @@
+<mat-card class="book-card">
+  <ng-container *ngIf="!book.isEmpty(); else no_book">
+    <mat-card-title-group>
+      <mat-card-title>{{ book.title }}</mat-card-title>
+      <mat-card-subtitle>{{ book.authors | CSV }} </mat-card-subtitle>
+      <img mat-card-md-image src="{{ book.images | first }}" alt="{{ book.title }}">
+    </mat-card-title-group>
+    <mat-card-content class="book-description">
+      {{ getBookDescription(book) }}
+    </mat-card-content>
+    <mat-card-content>
+      <mat-grid-list cols="4" rowHeight="40px">
+        <ng-container *ngTemplateOutlet="book_detail_row;
+            context: {
+                label: 'Publisher',
+                value: book.publisher,
+                precondition: canShowPublisher()
+            }">
+        </ng-container>
+        <ng-container *ngTemplateOutlet="book_detail_row;
+            context: {
+                label: 'Year:',
+                value: book.publish_year,
+                precondition: canShowYear()
+            }">
+        </ng-container>
+        <ng-container *ngTemplateOutlet="book_detail_row;
+            context: {
+                label: 'Edition:',
+                value: book.edition,
+                precondition: canShowEdition()
+            }">
+        </ng-container>
+        <ng-container *ngTemplateOutlet="book_detail_row;
+            context: {
+                label: 'Genre:',
+                value: book.genre,
+                precondition: canShowGenre()
+            }">
+        </ng-container>
+        <ng-container *ngTemplateOutlet="book_detail_row;
+            context: {
+                label: 'Pages:',
+                value: book.pages,
+                precondition: canShowPages()
+            }">
+        </ng-container>
+        <ng-container *ngTemplateOutlet="book_detail_row;
+            context: {
+                label: 'Price:',
+                value: book.price | currency,
+                precondition: canShowPrice()
+            }">
+        </ng-container>
+
+        <ng-template #book_detail_row let-label="label" let-value="value" let-precondition="precondition">
+          <ng-container *ngIf="precondition">
+              <mat-grid-tile><span class="book-details-row-label">{{ label }}</span></mat-grid-tile>
+              <mat-grid-tile [colspan]="3"><span class="book-details-row-value">{{ value }}</span></mat-grid-tile>
+          </ng-container>
+        </ng-template>
+      </mat-grid-list>
+
+      <mat-card-actions align="end" *ngIf="actions && actions.length > 0">
+        <ng-container *ngFor="let action of actions">
+          <button mat-button routerLink="{{ action.URL }}">{{ action.name }}</button>
+        </ng-container>
+      </mat-card-actions>
+    </mat-card-content>
+  </ng-container>
+
+  <ng-template #no_book>
+    <mat-card-content class="book-error">
+      Book not found
+    </mat-card-content>
+  </ng-template>
+</mat-card>

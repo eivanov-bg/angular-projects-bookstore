@@ -1,0 +1,50 @@
+:host {
+  -webkit-box-shadow: 3px 9px 31px -4px rgba(0,0,0,0.76);
+  box-shadow: 3px 9px 31px -4px rgba(0,0,0,0.76);
+}
+
+:host.compact {
+  width: 450px
+}
+
+.book-description {
+  min-height: 270px;
+  padding-top: 20px;
+}
+
+:host.compact .book-description {
+  min-height: 145px;
+}
+
+mat-grid-list {
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+mat-grid-tile:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+.book-details-row-label {
+  text-align: left;
+  width: 100%;
+  padding-right: 10px;
+}
+
+.book-details-row-value {
+  text-align: right;
+  width: 100%;
+  padding-right: 10px;
+}
+
+mat-grid-tile:last-child span {
+  font-weight: 500;
+}
+
+.book-error {
+  text-align: center;
+}
+
+.mat-grid-tile {
+  height: 30px;
+}

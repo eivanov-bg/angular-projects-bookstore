@@ -1,0 +1,9 @@
+<ng-container *ngIf="books && books.length > 0; else no_data">
+  <ng-container *ngFor="let book of books">
+    <section book-tile [book]="book" [compact]=true [actions]="[{name: 'View details', URL: '/book/' + book.ISBN}]"></section>
+  </ng-container>
+</ng-container>
+
+<ng-template #no_data>
+  <div class="no-books">No books to display</div>
+</ng-template>

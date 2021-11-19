@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background-color: white
+}
+
+span {
+  text-align: right;
+  width: 99%;
+  display: block;
+}
