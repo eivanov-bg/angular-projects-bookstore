@@ -1,4 +1,4 @@
-import {Component, OnInit, Self, SkipSelf} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { BookService } from '@bookstore/core/services';
