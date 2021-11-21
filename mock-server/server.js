@@ -1,13 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const routes = require("./routes.js");
-const hal = require("express-hal");
+const expressJwt = require('express-jwt');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(hal.middleware);
+app.use(expressJwt({secret: 'bookstore-app-super-strong-secret', algorithms: ['HS256']}).unless({path: ['/auth']}));
 
 routes(app);
 

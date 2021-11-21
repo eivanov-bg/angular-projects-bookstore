@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingService } from './presentation/services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +10,6 @@ import { LoadingService } from './presentation/services/loading.service';
 })
 export class AppComponent implements OnInit {
   title = 'Book Collection App';
-  // loading$ = this.loader.loading$;
-
-  constructor(private loader: LoadingService) {
-    // No-Op
-  }
 
   ngOnInit(): void {}
 }

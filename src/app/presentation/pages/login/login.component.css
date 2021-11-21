@@ -1,0 +1,11 @@
+:host {
+  margin-left: 20px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  padding-bottom: 10px;
+  color: red;
+}

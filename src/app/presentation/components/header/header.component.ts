@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 import { BookService } from '@bookstore/core/services';
-import { LoginComponent } from '@bookstore/presentation/components/login/login.component';
+import { AuthService } from '@bookstore/infrastructure/services';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +10,7 @@ import { LoginComponent } from '@bookstore/presentation/components/login/login.c
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(private bookService: BookService, private dialog: MatDialog) { }
+  constructor(private bookService: BookService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,17 +19,12 @@ export class HeaderComponent implements OnInit {
     this.bookService.searchByTitle($event);
   }
 
-  login(): void {
-    this.openLoginDialog();
+  get loggedIn(): boolean {
+    return this.authService.loggedIn;
   }
 
-  protected openLoginDialog(): void {
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.minWidth = 300;
-
-    this.dialog.open(LoginComponent, dialogConfig);
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 }

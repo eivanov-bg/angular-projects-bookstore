@@ -29,6 +29,6 @@
   padding-right: 10px;
 }
 
-.user-menu {
-  cursor: pointer;
+a, a:visited, a:hover {
+  color: white;
 }

@@ -5,5 +5,11 @@
     </span>
 </div>
 <div class="user-menu">
-  <a (click)="login()">Login</a>
+  <ng-container *ngIf="loggedIn; else not_logged_in">
+    <button mat-button (click)="logout()">Logout [Admin]</button>
+  </ng-container>
+
+  <ng-template #not_logged_in>
+    <a routerLink="/login">Login</a>
+  </ng-template>
 </div>
