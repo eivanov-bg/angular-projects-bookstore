@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 
 import { BookRepository } from '@bookstore/core/types/interfaces';
@@ -23,7 +23,12 @@ import { AuthService, AuthServiceImpl, BookApiService, BookApiServiceImpl } from
   providers: [
     { provide: AuthService, useClass: AuthServiceImpl },
     { provide: BookRepository, useClass: BookRepositoryImpl},
-    { provide: BookApiService, useClass: BookApiServiceImpl }
+    { provide: BookApiService, useClass: BookApiServiceImpl },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthServiceImpl,
+      multi: true
+    }
   ]
 })
 export class InfrastructureModule { }
