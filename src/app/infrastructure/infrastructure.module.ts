@@ -23,12 +23,12 @@ import { AuthService, AuthServiceImpl, BookApiService, BookApiServiceImpl } from
   providers: [
     { provide: AuthService, useClass: AuthServiceImpl },
     { provide: BookRepository, useClass: BookRepositoryImpl},
-    { provide: BookApiService, useClass: BookApiServiceImpl },
-    {
+    { provide: BookApiService, useClass: BookApiServiceImpl }
+   /* {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthServiceImpl,
       multi: true
-    }
+    }*/
   ]
 })
 export class InfrastructureModule { }
